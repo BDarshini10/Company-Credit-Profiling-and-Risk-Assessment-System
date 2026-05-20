@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Credit Profiling System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg px-4 shadow-sm" style="background: linear-gradient(90deg,#0B3C5D,#1f77b4);">
+  <span class="navbar-brand text-white fw-semibold">
+    <i class="bi bi-bank"></i> Company Credit Profiling System
+  </span>
+
+  <div class="ms-auto d-flex align-items-center gap-3">
+
+    <span class="text-white">
+      <i class="bi bi-person-circle"></i> {{ session.user }}
+    </span>
+
+    <a href="/logout" class="btn btn-light btn-sm">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </a>
+
+  </div>
+
+</nav>
+
+<div class="container mt-4">
+
+   <!-- TOP KPI CARDS -->
+<div class="row mb-4 g-3">
+
+  <div class="col-md-3">
+    <div class="card kpi-card text-center p-3">
+      <i class="bi bi-speedometer2 fs-3 text-primary"></i>
+      <h6 class="mt-2">Credit Score</h6>
+      <h2 class="text-primary">{{ credit_score }}</h2>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card kpi-card text-center p-3">
+      <i class="bi bi-exclamation-triangle fs-3 text-danger"></i>
+      <h6 class="mt-2">Risk Level</h6>
+
+      {% if risk_level == "Low" %}
+        <span class="badge bg-success p-2">Low</span>
+      {% elif risk_level == "Medium" %}
+        <span class="badge bg-warning text-dark p-2">Medium</span>
+      {% else %}
+        <span class="badge bg-danger p-2">High</span>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card kpi-card text-center p-3">
+      <i class="bi bi-cash-stack fs-3 text-success"></i>
+      <h6 class="mt-2">Loan Decision</h6>
+      <p class="fw-bold">{{ loan_decision }}</p>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card kpi-card text-center p-3">
+      <i class="bi bi-bar-chart fs-3 text-warning"></i>
+      <h6 class="mt-2">Risk Score</h6>
+      <h4>{{ risk_score }}/100</h4>
+    </div>
+  </div>
+
+</div>
+
+<div class="dashboard-header mb-4">
+
+<h5 class="text-muted">
+{{ company_name }}
+</h5>
+
+</div>
+
+<!-- COMPANY & GROUP BACKGROUND -->
+<div class="card mb-4">
+  <div class="card-header">
+<i class="bi bi-building"></i> Company & Group Background
+</div>
+  <div class="card-body row">
+
+    <div class="col-md-4">
+      <p><b>Industry:</b> {{ industry }}</p>
+      <p><b>Years:</b> {{ years }}</p>
+      <p><b>Business Model:</b> {{ business_model }}</p>
+    </div>
+
+    <div class="col-md-5">
+      <p><b>About Company</b></p>
+      <p>{{ about }}</p>
+    </div>
+
+    <div class="col-md-3">
+      <p><b>Group Companies:</b> {{ group_companies }}</p>
+      <p><b>Activities:</b> {{ activities }}</p>
+      <p><b>Exposure:</b> {{ exposure }}</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROMOTER PROFILE -->
+<div class="card mb-4">
+  <div class="card-header bg-secondary text-white">
+<i class="bi bi-person-badge"></i> Promoter Profile
+</div>
+  <div class="card-body row">
+
+    <div class="col-md-4">
+      <p><b>Name:</b> {{ promoter_name }}</p>
+      <p><b>Education:</b> {{ education }}</p>
+      <p><b>Experience:</b> {{ experience }}</p>
+    </div>
+
+    <div class="col-md-4">
+      <p><b>Track Record:</b> {{ track_record }}</p>
+      <p><b>Key Functions:</b> {{ key_functions }}</p>
+    </div>
+
+    <div class="col-md-4">
+      <p><b>Risk Indicators</b></p>
+      <p><b>Risk Level:</b>
+          {% if risk_level == "Low" %}
+           <span class="badge bg-success">Low Risk</span>
+
+          {% elif risk_level == "Medium" %}
+          <span class="badge bg-warning text-dark">Medium Risk</span>
+
+          {% else %}
+           <span class="badge bg-danger">High Risk</span>
+          {% endif %}
+        </p>
+
+      <p><b>Risk Score:</b> {{ risk_score }} / 100</p>
+      <ul>
+        {% for r in risks %}
+          <li class="text-danger">{{ r }}</li>
+        {% endfor %}
+      </ul>
+      <p class="mt-2"><b>Risk Explanation</b></p>
+<ul>
+  {% for r, exp in risk_explanations.items() %}
+    <li><small>{{ exp }}</small></li>
+  {% endfor %}
+</ul>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- QUALITATIVE ASSESSMENT (NEW, IMPORTANT) -->
+<div class="card mb-4">
+  <div class="card-header">
+<i class="bi bi-clipboard-data"></i> Qualitative Assessment
+</div>
+  <div class="card-body row">
+
+    <div class="col-md-6">
+      <p><b>Strengths</b></p>
+      <ul>
+        {% for s in strengths %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <p><b>Weaknesses</b></p>
+      <ul>
+        {% for w in weaknesses %}
+          <li>{{ w }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- AI RISK ANALYTICS -->
+<div class="card mb-4">
+  <div class="card-header bg-info text-white">
+<i class="bi bi-graph-up"></i>Credit Overview
+</div>
+  <div class="card-body row">
+
+    <!-- Risk Probability -->
+<div class="col-md-4">
+  <p><b> Risk Probability</b></p>
+
+  {% for label, prob in risk_probability.items() %}
+
+  <div class="mb-2">
+
+    <small>{{ label }}</small>
+
+    <div class="progress">
+      <div class="progress-bar"
+           style="width: {{ prob*100 }}%">
+        {{ (prob*100)|round(1) }}%
+      </div>
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+
+   <!-- Corporate Credit Score -->
+<div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
+
+  <p><b>Corporate Credit Score</b></p>
+
+  <div class="credit-circle">
+      {{ credit_score }}
+  </div>
+
+  <small>Range: 300 - 900</small>
+
+</div>
+
+    <!-- Loan Recommendation -->
+    <div class="col-md-4">
+      <p><b>Loan Recommendation</b></p>
+      <p>{{ loan_decision }}</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- AI INSIGHTS -->
+<div class="card mb-4">
+  <div class="card-header bg-dark text-white">
+    Credit Insights
+  </div>
+  <div class="card-body">
+
+    <p>
+      Based on analysis, the company shows 
+      <b>{{ risk_level }}</b> risk due to 
+      {{ risks|join(", ") }}.
+    </p>
+
+    <p class="text-muted">
+      Recommendation: {{ recommendation }}
+    </p>
+
+  </div>
+</div>
+
+<!-- AI RISK VISUALIZATION GRAPH -->
+<div class="card mb-4">
+  <div class="card-header bg-success text-white">
+    <i class="bi bi-bar-chart"></i> Risk Analytics Visualization
+  </div>
+
+  <div class="card-body text-center">
+
+  <div style="width:500px;height:300px;margin:auto;">
+      <canvas id="riskChart"></canvas>
+  </div>
+
+</div>
+
+<div class="text-center">
+  <a href="/view-report" class="btn btn-dark">View Final Report</a>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('riskChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+        labels: ['Directorships','Exposure','Profit Margin','Debt Ratio'],
+        datasets: [{
+            label: 'Risk Factors',
+            data: [
+                {{ directorships }},
+                {{ exposure }},
+                {{ profit_margin }},
+                {{ debt_ratio }}
+            ],
+            backgroundColor: [
+                '#0d6efd',
+                '#20c997',
+                '#ffc107',
+                '#dc3545'
+            ],
+            borderRadius: 8,
+            barThickness: 40
+        }]
+    },
+
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        animation: {
+            duration: 2000,   // ⏱ 2 seconds animation
+            easing: 'easeOutBounce'  // 🔥 smooth bounce effect
+        },
+
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+
+});
+
+</script>
+</div>
+</body>
+</html>

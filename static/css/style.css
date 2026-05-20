@@ -1,0 +1,250 @@
+body { 
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #000;
+}
+
+.page {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 10px 30px 40px;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 26px;   /* IMPORTANT: not large */
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #555;
+}
+
+/* HEADINGS */
+h2 {
+    font-size: 18px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* TEXT */
+p {
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.text {
+    line-height: 1.6;
+}
+
+.section-title {
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* HR */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+/* LIST */
+ul {
+    margin-left: 18px;
+    font-size: 14px;
+}
+
+/* BUTTON */
+.button-center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: #0d6efd;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.btn:hover {
+    background-color: #084298;
+}
+
+/* CREDIT SCORE DESIGN */
+
+.credit-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    background: conic-gradient(#0d6efd 0% 70%, #e9ecef 0%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 36px;   /* bigger & visible */
+    font-weight: normal;
+    color: black;
+
+    margin: 15px auto;   /* 🔥 center horizontally */
+
+    border: 8px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* CARD DESIGN */
+
+.card{
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* DASHBOARD HEADER */
+
+.dashboard-header h2{
+font-weight:600;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar{
+background:#0d6efd;
+font-weight:500;
+}
+.card-header {
+    background: #0B3C5D !important;
+    color: white !important;
+    font-weight: 500;
+}
+
+.card {
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* KPI CARDS PREMIUM */
+
+.kpi-card {
+    border: none;
+    border-radius: 12px;
+    background: white;
+    transition: 0.3s;
+}
+
+.kpi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* SMOOTH PAGE LOOK */
+
+body {
+    background: #f4f7fb;;
+}
+
+/* BETTER CARD HEADER */
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-size: 15px;
+}
+
+/* PROGRESS BAR ANIMATION */
+
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
+
+/*Report page*/
+
+.report-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.report-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.report-title {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.report-subtitle {
+    text-align: center;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #0B3C5D;
+}
+
+.highlight-box {
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.risk-high {
+    background: #fdecea;
+    color: #dc3545;
+}
+
+.risk-medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.risk-low {
+    background: #e6f4ea;
+    color: #198754;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.input-page {
+    background: linear-gradient(135deg, #0B3C5D, #1f77b4);
+    min-height: 100vh;
+}
+
+.input-page .container {
+    background: #f4f7fb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 40px;
+}
